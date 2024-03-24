@@ -1,3 +1,4 @@
+//lifted from https://github.com/pepijndevos/arduino-boy/blob/pokemon_go/pokemon_constants.h and modified to be an string array, not a typedef enum.
 char species_index[193][13] = {
 	"(Empty Slot)",
 	"RHYDON",

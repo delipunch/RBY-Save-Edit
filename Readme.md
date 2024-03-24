@@ -10,5 +10,7 @@ https://store.kitsch-bent.com/products/usb-64m-smart-card
 Special Thanks:
 Bulbapedia - Documenting the save data structures of RBY/GSC
 https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_(Generation_I)
+Pepijn de Vos - Making an easy to copy list of Gen I 'mons by index number
+https://github.com/pepijndevos/arduino-boy/blob/pokemon_go/pokemon_constants.h
 
 Note 1: For the foreseeable future, a cartridge with multiple ROM banks sharing the same SRAM banks will be required.
