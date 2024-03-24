@@ -13,8 +13,9 @@ void main()
 	ENABLE_RAM; // Enable RAM
 	
 	SWITCH_RAM(1); // Switch to RAM Bank 1, the main bank for save data
-	printf("Value 0xA605:\n%u\n\n", num1[0]);
-	printf("Value 0xAF37:\n%u\n\n", num2[0]);
+	
+	printf("Value 0xA605:\n%u\n\n", ((num1[0]>>8) | (num1[0]<<8)));
+	printf("Value 0xAF2C:\n%u\n\n", num2[0]);
 	
 	DISABLE_RAM; // Disable RAM
 }
