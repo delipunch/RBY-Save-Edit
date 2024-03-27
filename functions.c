@@ -12,12 +12,24 @@ uint16_t read16(uint8_t* ptr)
 
 uint32_t read24(uint8_t* ptr)
 {
-	return ptr[2] | ptr[1]<<8 | ptr[0]<<16;
+	return ptr[2] | ptr[1]<<8 | ptr[0]<<16 & 0x00FFFFFF;
 }
 
 uint32_t read32(uint8_t* ptr)
 {
 	return ptr[3] | ptr[2]<<8 | ptr[1]<<16 | ptr[0]<<24;
+}
+
+uint8_t read4(uint8_t* ptr, bool highNibble)
+{
+	if (highNibble)
+	{
+		return ptr[0] >> 4 & 0x0F;
+	}
+	else
+	{
+		return ptr[0] & 0x0F;
+	}
 }
 
 //Byte swaps lifted from https://stackoverflow.com/a/2637138
