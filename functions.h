@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include <stdbool.h> 
 
+void readMonIntoBuffer(uint8_t slotNo);
+
 uint8_t read8(uint8_t* ptr);
 uint16_t read16(uint8_t* ptr);
 uint32_t read24(uint8_t* ptr);
@@ -11,3 +13,5 @@ uint16_t swap_uint16( uint16_t val );
 int16_t swap_int16( int16_t val );
 uint32_t swap_uint32( uint32_t val );
 int32_t swap_int32( int32_t val );
+
+uint8_t checksumBank(uint8_t bankNo);

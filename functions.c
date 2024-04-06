@@ -1,4 +1,41 @@
 #include "functions.h"
+#include "pokemon_defines.h"
+#include <gb/gb.h>
+
+extern uint8_t monBuffer[];
+void readMonIntoBuffer(uint8_t slotNo)
+{
+	uint8_t* slotPtr;
+	switch (slotNo)
+	{
+		case 1:
+			slotPtr = partyMon1Gen1;
+			break;
+		case 2:
+			slotPtr = partyMon2Gen1;
+			break;
+		case 3:
+			slotPtr = partyMon3Gen1;
+			break;
+		case 4:
+			slotPtr = partyMon4Gen1;
+			break;
+		case 5:
+			slotPtr = partyMon5Gen1;
+			break;
+		case 6:
+			slotPtr = partyMon6Gen1;
+			break;
+	}
+	
+	ENABLE_RAM; // Enable RAM
+	SWITCH_RAM(1); // Switch to RAM Bank 1, the main bank for save data
+	for (uint8_t bufferCopyProgress = 0; bufferCopyProgress < partyMonLengthGen1; bufferCopyProgress++)
+	{
+		monBuffer[bufferCopyProgress]=read8(slotPtr+bufferCopyProgress); //copy from the save into a buffer
+	}
+	DISABLE_RAM; //Disable RAM, we're done with it for now
+}
 
 uint8_t read8(uint8_t* ptr)
 {
@@ -92,3 +129,32 @@ void cls() // lifted from https://github.com/tomvdb/gameboy-menu
     gotoxy(1, 1);
 }
 */
+
+uint8_t checksumBank(uint8_t bankNo)
+{
+	switch (bankNo)
+	{
+		case 1://not working currently
+			uint8_t checksumBank1 = 255;
+			ENABLE_RAM;
+			SWITCH_RAM(1);
+			for (uint16_t checksumProgress=0;checksumProgress<0xF8A;checksumProgress++)
+			{
+				uint8_t* checksumPtr = 0xA598;
+				checksumBank1 -= checksumPtr[checksumProgress];
+			}
+			DISABLE_RAM;
+			return checksumBank1;
+			break;
+			/*
+		case 2:
+			uint8_t checksumBank2 = 255;
+			uint8_t checksumBank2Box1 = 255;
+			uint8_t checksumBank2Box2 = 255;
+			uint8_t checksumBank2Box3 = 255;
+			uint8_t checksumBank2Box4 = 255;
+			uint8_t checksumBank2Box5 = 255;
+			uint8_t checksumBank2Box6 = 255;
+			*/
+	}
+}

@@ -3,19 +3,25 @@
 #include <gb/gb.h>
 #include "functions.h"
 #include "pokemon_constants.h"
+#include "pokemon_defines.h"
 
-//#define TID 0xA605
-
-//uint16_t *num1 = (uint16_t *)0xA605; // address for TID in Cart RAM, Bank 1
-//uint8_t *num2 = (uint8_t *)0xAF2C; // address for the count of party Pokemon in Cart RAM, Bank 1
+uint8_t monBuffer[partyMonLengthGen1];
 
 void main()
 {	
-	while (true)
-	{
+	//while (true)
+	//{
 		ENABLE_RAM; // Enable RAM
 		
 		SWITCH_RAM(1); // Switch to RAM Bank 1, the main bank for save data
+		
+		uint8_t* saveChecksum = 0xB523;
+		
+		printf("Read checksum:\n%hx\n",read8(saveChecksum));
+		printf("\nCalc checksum:\n%hx\n",checksumBank(1));
+		
+		DISABLE_RAM;
+		
 		/*
 			printf("Trainer ID:\n %u\n\n ", read16(0xA605));
 			printf("Party Count:\n %u\n", read8(0xAF2C));
@@ -26,7 +32,7 @@ void main()
 			printf("3rd Pokemon Species:%s\n ", species_index[read8(0xAF2F)]);
 			printf("3rd Pokemon XP:\n %u\n", read24(0xAF9A));
 		*/
-		
+		/*
 		printf("1st Pokemon Data\n\n\n");
 		printf("1st Pokemon Species: %s\n", species_index[read8(0xAF34)]);
 		printf("1st Pokemon Cur HP:\n %u\n", read16(0xAF35));
@@ -86,5 +92,6 @@ void main()
 		
 		waitpad(J_A);
 		waitpadup();
-	}
+		*/
+	//}
 }	

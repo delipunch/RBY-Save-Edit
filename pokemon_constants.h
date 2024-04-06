@@ -1,4 +1,4 @@
-//lifted from https://github.com/pepijndevos/arduino-boy/blob/pokemon go/pokemon constants.h and modified to be an string array, not a typedef enum.
+//lifted from https://github.com/pepijndevos/arduino-boy/blob/pokemon_go/pokemon_constants.h and modified to be an string array, not a typedef enum.
 const char *species_index[256] = {
 	"Empty Slot",
 	"RHYDON",
@@ -258,6 +258,7 @@ const char *species_index[256] = {
 	"MISSINGNO 0xFF"
 };
 
+//lifted from Bulbapedia's list of moves, which was already in index order. Manually converted from a rich text table to this.
 const char *move_index[256] = {
 	"Empty Slot",
 	"Pound",
